@@ -477,6 +477,16 @@
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LT0N7RE80F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LT0N7RE80F');
+</script>
+<!-- End Google Analytics -->
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -904,11 +914,31 @@ src="https://www.facebook.com/tr?id=2074904810098037&ev=PageView&noscript=1"/></
   // Meta Pixel tracking
   document.querySelectorAll('a[href*="lynk.id"]').forEach(function(btn) {
     btn.addEventListener('click', function() {
+      // Meta Pixel
       fbq('track', 'InitiateCheckout', {
         value: 79000,
         currency: 'IDR',
         content_name: 'Paket Ebook Self-Dev & Bisnis',
         content_type: 'product'
+      });
+      // Google Analytics
+      gtag('event', 'begin_checkout', {
+        currency: 'IDR',
+        value: 79000,
+        items: [{
+          item_name: 'Paket Ebook Self-Dev & Bisnis',
+          price: 79000,
+          quantity: 1
+        }]
+      });
+    });
+  });
+
+  // GA tracking WA button
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      gtag('event', 'contact', {
+        method: 'WhatsApp'
       });
     });
   });
