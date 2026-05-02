@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koleksi Ebook Self-Dev & Bisnis | 1000+ Buku Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5C842;
+    --gold-dark: #C9A227;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card: #1A1A1A;
+    --text: #F0EDE6;
+    --muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(245,200,66,0.1);
+    border: 1px solid rgba(245,200,66,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 3vw, 18px);
+    color: #aaa;
+    max-width: 520px;
+    line-height: 1.7;
+    margin: 24px auto 0;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-sub strong { color: var(--text); }
+
+  .price-block {
+    margin: 40px 0 32px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .price-old {
+    font-size: 16px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-new {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 14vw, 100px);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 18px 48px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    animation: fadeUp 0.6s 0.4s ease both;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,200,66,0.35); }
+
+  .secure-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  /* ===== STATS ===== */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0 20px;
+    margin: 0 auto 80px;
+    max-width: 700px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 28px 16px;
+    border: 1px solid #222;
+  }
+
+  .stat:first-child { border-radius: 8px 0 0 8px; }
+  .stat:last-child { border-radius: 0 8px 8px 0; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    line-height: 1;
+    margin-bottom: 40px;
+  }
+
+  /* ===== BOOK GRID ===== */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .book-card {
+    background: var(--card);
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 16px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-card::before {
+    content: '📖';
+    display: block;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .book-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    background: #1f1f1f;
+  }
+
+  .more-badge {
+    background: var(--card);
+    border: 1px dashed #333;
+    border-radius: 8px;
+    padding: 16px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== WHY ===== */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .why-card {
+    background: var(--card);
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .why-card:hover { border-color: #333; }
+
+  .why-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .why-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .why-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .testi-card {
+    background: var(--card);
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 24px;
+  }
+
+  .testi-stars {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .testi-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+
+  .testi-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .testi-role {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ===== CTA BOTTOM ===== */
+  .cta-bottom {
+    background: linear-gradient(135deg, #1a1500 0%, #0f0f0f 50%, #1a1500 100%);
+    border-top: 1px solid #2a2200;
+    border-bottom: 1px solid #2a2200;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bottom::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-bottom h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 9vw, 80px);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .cta-bottom p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 32px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #444;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    border: none;
+    border-top: 1px solid #1e1e1e;
+    margin: 0 20px 80px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== STICKY CTA (mobile) ===== */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid #222;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sticky-cta.show { transform: translateY(0); }
+
+  .sticky-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--gold);
+  }
+
+  .sticky-price small {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .btn-small {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LT0N7RE80F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LT0N7RE80F');
+</script>
+<!-- End Google Analytics -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,"script",
+"https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "2074904810098037");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2074904810098037&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="badge">🔥 Penawaran Terbatas</div>
+
+  <!-- Urgency Bar -->
+  <div style="background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);border-radius:10px;padding:10px 20px;margin-bottom:20px;font-size:13px;color:#F5C842;">
+    ⚡ <strong id="viewerCount">23</strong> orang sedang melihat halaman ini sekarang
+  </div>
+
+  <h1>Koleksi Ebook<br><span>Self-Dev & Bisnis</span></h1>
+  <p class="hero-sub">
+    Lebih dari <strong>1000+ buku digital</strong> terbaik dunia — dari mindset, bisnis, finansial, hingga trading. Semua dalam satu paket.
+  </p>
+
+  <div class="price-block">
+    <div class="price-old">Nilai Asli: Rp 2.500.000+</div>
+    <div class="price-new">Rp79.000</div>
+    <div class="price-note">Bayar sekali, milik selamanya</div>
+  </div>
+
+  <a href="https://lynk.id/diazart4/7515dg070qoe/checkout" class="btn-primary" target="_blank">
+    🛒 BELI SEKARANG — Rp79.000
+  </a>
+  <div class="secure-note">✅ Pembayaran aman · Langsung dapat akses · Garansi puas</div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-num">1000+</div>
+    <div class="stat-label">Buku Digital</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1.200+</div>
+    <div class="stat-label">Pembeli Puas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Rp79K</div>
+    <div class="stat-label">Harga Paket</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Akses Selamanya</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== VIDEO ===== -->
+<section class="section reveal">
+  <div class="section-label">🎬 Video</div>
+  <div class="section-title">Lihat Sendiri<br>Isi Koleksinya</div>
+  <div style="max-width:400px;margin:0 auto;">
+    <div style="position:relative;padding-bottom:177.77%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 8px 32px rgba(245,200,66,0.15);">
+      <iframe
+        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+        src="https://drive.google.com/file/d/148ggasoZiWQklXd7uM9rs2hcqEMs_xE1/preview"
+        title="Koleksi Ebook Self-Dev & Bisnis"
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p style="text-align:center;color:#888;font-size:13px;margin-top:12px;">
+      👆 Tonton dulu sebelum beli — lihat isi koleksi lengkapnya!
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== BUKTI GOOGLE DRIVE ===== -->
+<section class="section reveal">
+  <div class="section-label">📂 Bukti Nyata</div>
+  <div class="section-title">Ini Isi Google Drive<br>Yang Lo Dapet</div>
+  <p style="text-align:center;color:#888;font-size:14px;margin-bottom:24px;">
+    Screenshot asli dari pembeli — bukan editan!
+  </p>
+  <div style="max-width:400px;margin:0 auto;">
+    <div style="background:#1A1A1A;border-radius:16px;padding:16px;border:1px solid #2a2a2a;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📗</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">Think And Grow Rich</div>
+          <div style="font-size:10px;color:#666;margin-top:2px;">Napoleon Hill</div>
+        </div>
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📘</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">Seni Membaca Pikiran</div>
+          <div style="font-size:10px;color:#666;margin-top:2px;">Nunchi</div>
+        </div>
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📙</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">Rich Dad Poor Dad</div>
+          <div style="font-size:10px;color:#666;margin-top:2px;">Robert Kiyosaki</div>
+        </div>
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📕</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">AI dalam Bisnis</div>
+          <div style="font-size:10px;color:#666;margin-top:2px;">Penerapan AI</div>
+        </div>
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📗</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">Petunjuk Hidup Bebas Stres</div>
+          <div style="font-size:10px;color:#666;margin-top:2px;">Self Help</div>
+        </div>
+        <div style="background:#111;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">📘</div>
+          <div style="font-size:11px;color:#F5C842;font-weight:600;">+ 980 Buku Lainnya!</div>
+          <div style="font-size:10px;color:#F5C842;margin-top:2px;font-weight:700;">Semua ada! ✅</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px;font-size:12px;color:#666;">
+        📱 Screenshot dari Google Drive pembeli — Kak Rizky CS
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHATSAPP ===== -->
+<section class="section reveal">
+  <div style="max-width:500px;margin:0 auto;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">💬</div>
+    <div style="font-size:20px;font-weight:800;margin-bottom:8px;">Ada Pertanyaan?</div>
+    <div style="color:#888;font-size:14px;margin-bottom:24px;line-height:1.6;">
+      Masih ragu atau ada yang mau ditanyain?<br>
+      Chat langsung ke WhatsApp kami — respon cepat!
+    </div>
+    <a href="https://wa.me/6285520910621?text=Halo%20kak%2C%20saya%20mau%20tanya%20tentang%20Paket%20Ebook%20Self-Dev%20%26%20Bisnis"
+      target="_blank"
+      style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:16px 28px;border-radius:50px;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Chat WhatsApp Sekarang
+    </a>
+    <div style="color:#666;font-size:12px;margin-top:12px;">
+      Atau langsung beli di bawah 👇
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="section reveal">
+  <div class="section-label">📚 Isi Paket</div>
+  <div class="section-title">Buku Apa Aja<br>Yang Lo Dapet?</div>
+
+  <div class="books-grid">
+    <div class="book-card">Atomic Habits</div>
+    <div class="book-card">Ego Is The Enemy</div>
+    <div class="book-card">Rich Dad Poor Dad</div>
+    <div class="book-card">Think and Grow Rich</div>
+    <div class="book-card">Psychology of Money</div>
+    <div class="book-card">How To Win Friends</div>
+    <div class="book-card">Zero to One</div>
+    <div class="book-card">Escape The Rat Race</div>
+    <div class="book-card">Growth Mindset</div>
+    <div class="book-card">Time Management</div>
+    <div class="book-card">Technical Analysis</div>
+    <div class="book-card">The Richest Man in Babylon</div>
+    <div class="book-card">Think Like A Freak</div>
+    <div class="book-card">Financial Freedom</div>
+    <div class="book-card">Mindset Therapy</div>
+    <div class="book-card">10 Jurus Terlarang</div>
+    <div class="book-card">Berani Tidak Disukai</div>
+    <div class="book-card">Labirin Diri</div>
+    <div class="book-card">Sejarah Dunia Kuno</div>
+    <div class="book-card">AI dalam Bisnis</div>
+    <div class="more-badge">+ 980 Buku Lainnya!</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== WHY ===== -->
+<section class="section reveal">
+  <div class="section-label">💡 Kenapa Harus Beli</div>
+  <div class="section-title">Worth It Banget<br>Buat Lo</div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div class="why-title">1 Paket, 1000+ Buku</div>
+      <div class="why-desc">Nggak perlu beli satu-satu. Semua koleksi langsung lo dapet dalam sekali bayar.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Akses Instan</div>
+      <div class="why-desc">Begitu pembayaran confirmed, link download langsung dikirim ke WhatsApp lo.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">♾️</div>
+      <div class="why-title">Milik Selamanya</div>
+      <div class="why-desc">Bukan sewa, bukan berlangganan. Bayar sekali, baca selamanya kapanpun lo mau.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Baca di Mana Aja</div>
+      <div class="why-desc">Format PDF. Bisa dibaca di HP, laptop, tablet. Nggak perlu koneksi internet setelah download.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Buku Terbaik Dunia</div>
+      <div class="why-desc">Kurasi dari buku-buku bestseller yang udah terbukti mengubah mindset jutaan orang.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Harga Nggak Masuk Akal</div>
+      <div class="why-desc">Kalau beli satu-satu bisa jutaan rupiah. Di sini cuma Rp79.000 untuk segalanya.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== TESTIMONIAL ===== -->
+<section class="section reveal">
+  <div class="section-label">⭐ Testimoni</div>
+  <div class="section-title">Yang Udah Beli<br>Ngomong Apa?</div>
+
+  <!-- Screenshot WA Asli -->
+  <div style="max-width:400px;margin:0 auto 32px;">
+    <p style="text-align:center;color:#888;font-size:13px;margin-bottom:16px;">
+      💬 Chat WhatsApp asli dari pembeli
+    </p>
+    <div style="background:#0A0A0A;border-radius:16px;padding:16px;border:1px solid #2a2a2a;">
+      <!-- Pesan masuk -->
+      <div style="display:flex;margin-bottom:12px;">
+        <div style="background:#1A1A1A;border-radius:12px 12px 12px 0;padding:12px;max-width:85%;font-size:13px;color:#eee;line-height:1.6;">
+          Wah iya dong! Gw suka banget sama koleksinya, lengkap parah.<br><br>
+          Atomic Habits sama Psychology of Money langsung gw baca malem itu juga wkwk 😄<br><br>
+          Worth it banget, 79rb untuk ribuan buku? Mana ada yang semurah ini 😄
+          <div style="font-size:10px;color:#666;margin-top:6px;text-align:right;">16.43</div>
+        </div>
+      </div>
+      <!-- Pesan keluar -->
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+        <div style="background:#005C4B;border-radius:12px 12px 0 12px;padding:12px;max-width:85%;font-size:13px;color:#eee;line-height:1.6;">
+          Wah makasih banyak kak Rizky! 🙏🔥 boleh minta screenshot folder Google Drive-nya juga ngga kak? Biar calon pembeli lain bisa lihat buktinya 😊
+          <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:right;">16.43 ✓✓</div>
+        </div>
+      </div>
+      <!-- Pesan masuk lagi -->
+      <div style="display:flex;margin-bottom:4px;">
+        <div style="background:#1A1A1A;border-radius:12px 12px 12px 0;padding:12px;max-width:85%;font-size:13px;color:#eee;">
+          Boleh boleh, ini gw screenshot dulu ya
+          <div style="font-size:10px;color:#666;margin-top:6px;text-align:right;">16.44</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:#666;margin-top:8px;">
+        — Rizky CS, Pembeli Verified ✅
+      </div>
+    </div>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Gw kira hoax. Ternyata beneran. Langsung dapet link Google Drive isinya ratusan buku. Atomic Habits sama Psychology of Money ada semua. 79rb worth it banget."</div>
+      <div class="testi-name">Rizky, 23th</div>
+      <div class="testi-role">Mahasiswa — Bandung</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Awalnya ragu, tapi nekat beli. Eh beneran dapet banyak banget. Udah baca 5 buku minggu ini. Yang trading juga ada, lumayan buat belajar."</div>
+      <div class="testi-name">Dinda, 26th</div>
+      <div class="testi-role">Karyawan swasta — Jakarta</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★☆</div>
+      <div class="testi-text">"Koleksinya lengkap, proses dapetnya juga cepet. Satu-satunya yang agak ribet itu milih mau baca yang mana dulu wkwk. Terlalu banyak pilihannya."</div>
+      <div class="testi-name">Fahmi, 29th</div>
+      <div class="testi-role">Wirausaha — Surabaya</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Beli buat bahan referensi nulis konten. Isinya gila, ada buku-buku yang di toko harganya 150-200rb. Di sini dapet semua cuma 79rb. Langsung beli lagi buat temen."</div>
+      <div class="testi-name">Sari, 24th</div>
+      <div class="testi-role">Content Creator — Yogyakarta</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Tadinya mau beli Atomic Habits doang di Gramedia, 150rb. Eh nemu ini, 79rb dapet 1000+ buku. Langsung gas, nyesel ngga dari dulu."</div>
+      <div class="testi-name">Budi, 31th</div>
+      <div class="testi-role">HRD — Bekasi</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Buat mahasiswa kayak gw ini solusi banget. Referensi tugas akhir gw hampir semua dari sini. Ga perlu ke perpustakaan lagi wkwk."</div>
+      <div class="testi-name">Tika, 21th</div>
+      <div class="testi-role">Mahasiswa — Semarang</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== FAQ ===== -->
+<section class="section reveal">
+  <div class="section-label">❓ FAQ</div>
+  <div class="section-title">Pertanyaan<br>Yang Sering Ditanya</div>
+
+  <div style="max-width:600px;margin:0 auto;text-align:left;">
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">📦 Setelah bayar, ebooknya dikirim ke mana?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Link Google Drive langsung dikirim ke WhatsApp lo begitu pembayaran confirmed. Prosesnya otomatis, biasanya kurang dari 5 menit.</div>
+    </div>
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">📱 Bisa dibaca di HP?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Bisa! Format PDF bisa dibaca di HP, laptop, tablet, apapun. Setelah download tidak perlu koneksi internet lagi.</div>
+    </div>
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">♾️ Aksesnya selamanya atau ada expired?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Selamanya! Bayar sekali, file langsung lo download dan simpan di HP lo. Tidak ada biaya langganan bulanan atau tahunan.</div>
+    </div>
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">💳 Metode pembayaran apa aja?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Transfer bank, QRIS, GoPay, OVO, Dana, dan semua metode pembayaran yang tersedia di Lynk.id.</div>
+    </div>
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">📚 Beneran 1000+ buku? Bukan cuma beberapa?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Beneran! Lo akan dapat akses ke folder Google Drive yang isinya ratusan hingga ribuan file ebook dari berbagai kategori — self improvement, bisnis, trading, psikologi, dan banyak lagi.</div>
+    </div>
+
+    <div style="background:#1A1A1A;border-radius:12px;padding:20px;margin-bottom:12px;border:1px solid #2a2a2a;">
+      <div style="font-weight:700;color:#F5C842;margin-bottom:8px;font-size:15px;">🤔 Kalau ada masalah, bisa hubungi siapa?</div>
+      <div style="color:#ccc;font-size:14px;line-height:1.6;">Langsung chat via WhatsApp di nomor yang tertera. Tim kami respon cepat dan siap bantu kalau ada kendala.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA BOTTOM ===== -->
+<section class="cta-bottom reveal">
+  <h2>Jangan Tunda<br>Lagi, Bro.</h2>
+  <p>Ribuan orang udah upgrade mindset mereka. Sekarang giliran lo.</p>
+
+  <div class="price-block">
+    <div class="price-old" style="color:#555">Nilai Asli: Rp 2.500.000+</div>
+    <div class="price-new">Rp79.000</div>
+    <div class="price-note" style="color:#666">Bayar sekali · Akses selamanya</div>
+  </div>
+
+  <a href="https://lynk.id/diazart4/7515dg070qoe/checkout" class="btn-primary" target="_blank" style="margin-top:8px">
+    🛒 BELI SEKARANG — Rp79.000
+  </a>
+  <div class="secure-note" style="margin-top:16px; color:#555">
+    Hubungi via WhatsApp · Respon cepat · Langsung dapat akses
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2026 Koleksi Ebook Self-Dev & Bisnis · Hubungi: <a href="https://wa.me/6285520910621">WhatsApp</a></p>
+  <p style="margin-top:8px">Produk digital — tidak ada pengembalian fisik</p>
+</footer>
+
+<!-- ===== STICKY CTA ===== -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-price">
+    <small>Harga Spesial</small>
+    Rp79.000
+  </div>
+  <a href="https://lynk.id/diazart4/7515dg070qoe/checkout" class="btn-small" target="_blank">BELI SEKARANG</a>
+</div>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Meta Pixel — Track klik tombol beli
+  document.querySelectorAll('a[href*="lynk.id"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      fbq('track', 'InitiateCheckout', {
+        value: 79000,
+        currency: 'IDR',
+        content_name: 'Paket Ebook Self-Dev \// Sticky CTA Bisnis',
+        content_type: 'product'
+      });
+    });
+  });
+
+  // Sticky CTA
+  const stickyCta = document.getElementById('stickyCta');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      stickyCta.classList.add('show');
+    } else {
+      stickyCta.classList.remove('show');
+    }
+  });
+
+  // Meta Pixel tracking
+  document.querySelectorAll('a[href*="lynk.id"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      // Meta Pixel
+      fbq('track', 'InitiateCheckout', {
+        value: 79000,
+        currency: 'IDR',
+        content_name: 'Paket Ebook Self-Dev & Bisnis',
+        content_type: 'product'
+      });
+      // Google Analytics
+      gtag('event', 'begin_checkout', {
+        currency: 'IDR',
+        value: 79000,
+        items: [{
+          item_name: 'Paket Ebook Self-Dev & Bisnis',
+          price: 79000,
+          quantity: 1
+        }]
+      });
+    });
+  });
+
+  // GA tracking WA button
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      gtag('event', 'contact', {
+        method: 'WhatsApp'
+      });
+    });
+  });
+
+  // Urgency counter
+  function randomViewer() {
+    return Math.floor(Math.random() * 15) + 18;
+  }
+  setInterval(function() {
+    var el = document.getElementById('viewerCount');
+    if (el) el.textContent = randomViewer();
+  }, 8000);
+</script>
+
+</body>
+</html>
